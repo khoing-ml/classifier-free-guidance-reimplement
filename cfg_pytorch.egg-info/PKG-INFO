@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: cfg-pytorch
+Version: 0.7.1
+Summary: Classifier Free Guidance - Pytorch
+License: MIT
+Description-Content-Type: text/markdown
+Requires-Dist: beartype
+Requires-Dist: einops>=0.8
+Requires-Dist: environs
+Requires-Dist: ftfy
+Requires-Dist: open-clip-torch>=2.8.0
+Requires-Dist: torch>=2.0
+Requires-Dist: transformers[torch]
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
