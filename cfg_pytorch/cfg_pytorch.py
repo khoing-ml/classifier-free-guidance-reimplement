@@ -1,7 +1,7 @@
 from __future__ import annotations
 from collections import namedtuple
 from torch import nn, einsum, Tensor
-
+from torch.nn import functional as F
 from einops import rearrange, repeat, pack, unpack
 
 from beartype.door import is_bearable
@@ -57,3 +57,12 @@ def pack_one_with_inverse(x, pattern):
 def project(x, y):
     x, inverse = pack_one_with_inverse(x, 'b *') # b - batch
     y, _ = pack_one_with_inverse(y , 'b *')
+
+    dtype = x.dtype  
+    # cast to same type
+    x, y = x.double(), y.double()
+    #normalize 
+    unit = F.normalize(y, dim=-1) ## normalize the value dim
+    parallel = (x * unit).sum(dim = - 1, keepdim = True) * unit 
+    orthogonal = x - parallel 
+    return inverse(parallel.type(dtype)), inverse(orthogonal.type(dtype))
