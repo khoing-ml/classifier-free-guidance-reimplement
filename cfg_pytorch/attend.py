@@ -29,7 +29,7 @@ def once(fn):
 print_once = once(print)
 
 
-class Attention(nn.Module):
+class Attend(nn.Module):
     def __init__(
         self,
         dropout = 0.,
